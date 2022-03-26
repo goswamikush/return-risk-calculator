@@ -1,18 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-import time, csv, os, statistics
+import webbrowser, statistics, csv, os, time
 
 stock = input("Enter stock ticker: ")
 
-s = Service("/Users/kushgoswami/Documents/PythonPrograms/chromedriver")
-
-driver = webdriver.Chrome(service = s)
-
-driver.get(f"https://query1.finance.yahoo.com/v7/finance/download/{stock.upper()}?period1=1490400000&period2=1648166400&interval=1mo&events=history&includeAdjustedClose=true")
+webbrowser.open(f"https://query1.finance.yahoo.com/v7/finance/download/{stock.upper()}?period1=1490400000&period2=1648166400&interval=1mo&events=history&includeAdjustedClose=true")
 
 time.sleep(1)
-
-driver.quit()
 
 with open(f'/Users/kushgoswami/Downloads/{stock.upper()}.csv', 'r') as csv_file:
     csv_reader = csv.reader(csv_file)
